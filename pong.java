@@ -97,4 +97,3 @@ public class Pong extends JFrame
     }
       
 }
-Contact GitHub 
