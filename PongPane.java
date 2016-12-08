@@ -29,36 +29,36 @@ public class PongPane extends JPanel {
     int y1Paddle2 = 150;
     int y2Paddle2 = 250;
     
-    int Vx = 2;
-    int Vy = 1;
+
     
     boolean running = true;
     
     public PongPane(){
         
         // Compute the new ball coordinates 
-		Timer timer = new Timer(10, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+        Timer timer = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                             
-				if (running) {
-					//GAME_LOOP
+                if (running) {
+                    //GAME_LOOP
                                         repaint();
-				}
-			}
-		});
-		timer.start();
+                }
+            }
+        });
+        timer.start();
     }
     
     public void start() {
-		if (!running) {
-			running = true;
-                        
-                        
-                        
-                        repaint();
-		}
-	}
+        Ball gameBall = new Ball(xBall, yBall, comp);
+        paddle paddle1 = new paddle(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1, comp);
+        paddle paddle2 = new paddle(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2, comp);
+        
+        if (!running) {
+            running = true;
+            repaint();
+        }
+    }
     @Override
     public void paintComponent(Graphics comp){
      super.paintComponent(comp);
@@ -90,15 +90,5 @@ public class PongPane extends JPanel {
         comp.setColor(Color.white);
         comp.drawLine(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2);
     }
-    public void ballUpdate(Graphics comp)
-    {
-        comp.setColor(Color.white);
-        comp.fillOval(xBall, yBall, 30, 30);
-        xBall += Vx;
-        yBall += Vy;
-        if (xBall > 485 || xBall < 0){Vx = -1 * Vx;}
-        if (yBall > 470 || yBall < 0){Vy = -1 * Vy;}
-        comp.setColor(Color.red);
-        comp.fillOval(xBall, yBall, 30, 30);
-    }
+
 }
