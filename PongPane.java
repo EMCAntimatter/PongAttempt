@@ -50,10 +50,6 @@ public class PongPane extends JPanel {
     }
     
     public void start() {
-        Ball gameBall = new Ball(xBall, yBall, comp);
-        paddle paddle1 = new paddle(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1, comp);
-        paddle paddle2 = new paddle(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2, comp);
-        
         if (!running) {
             running = true;
             repaint();
@@ -61,34 +57,39 @@ public class PongPane extends JPanel {
     }
     @Override
     public void paintComponent(Graphics comp){
-     super.paintComponent(comp);
+        
+        Ball gameBall = new Ball(xBall, yBall, comp);
+        Paddle paddle1 = new Paddle(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1, comp);
+        Paddle paddle2 = new Paddle(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2, comp);
+        
+        
+        @Override
+        public void paintComponent(Graphics comp){
+         super.paintComponent(comp);
      
-        wipe(comp);
-        draw(comp);
+            wipe(comp);
+            draw(comp);
         
         
        }
-    
+    }
+
     
     public void draw(Graphics comp){
-        ballUpdate(comp);
-    
-        comp.setColor(Color.blue);
-        comp.drawLine(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1);
+        comp.setColor(Color.red);
+        gameBall.ballUpdate(xBall, yBall, comp);
         
         comp.setColor(Color.blue);
-        comp.drawLine(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2);
+        paddle1.paddleUpdate(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1, comp);
+        paddle2.paddleUpdate(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2, comp);
     }
     public void wipe(Graphics comp)
     {
-        comp.setColor(Color.white);
-        comp.fillOval(xBall, yBall, 30, 30);
         
         comp.setColor(Color.white);
-        comp.drawLine(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1);
-        
-        comp.setColor(Color.white);
-        comp.drawLine(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2);
+        gameBall.ballUpdate(xBall, yBall, comp);
+        paddle1.paddleUpdate(x1Paddle1, y1Paddle1, x2Paddle1, y2Paddle1, comp);
+        paddle2.paddleUpdate(x1Paddle2, y1Paddle2, x2Paddle2, y2Paddle2, comp);
     }
 
 }
