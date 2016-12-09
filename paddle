@@ -10,20 +10,20 @@ import java.awt.event.KeyEvent;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-public class paddle
+public class Ball
 {
+    int Vx = 2;
+    int Vy = 1;
+    public Ball(int xBall, int yBall, Graphics comp){
+        this.updateBall(xBall, yBall, comp);
+        
+    }
+    public void updateBall(int xBall, int yBall, Graphics comp){
+        xBall += Vx;
+        yBall += Vy;
+        if (xBall > 500 || xBall < 0){Vx = -1 * Vx;}
+        if (yBall > 500 || yBall < 0){Vy = -1 * Vy;}
+        comp.fillOval(xBall, yBall, 30, 30);
+    }
     
-    public paddle(int x1Paddle, int y1Paddle, int x2Paddle, int y2Paddle, Graphics comp)
-    {
-        this.paddleUpdate(x1Paddle, y1Paddle, x2Paddle, y2Paddle, comp);
-    }
-
-   
-    public void paddleUpdate(int x1Paddle, int y1Paddle, int x2Paddle, int y2Paddle, Graphics comp){
-        comp.setColor(Color.white);
-        comp.drawLine(x1Paddle, y1Paddle, x2Paddle, y2Paddle);
-        //update paddle chords
-        comp.setColor(Color.blue);
-        comp.drawLine(x1Paddle, y1Paddle, x2Paddle, y2Paddle);
-    }
 }
