@@ -1,0 +1,43 @@
+public class SynthDiv{
+    public static void main(String[] args){
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("Enter the degree of the polynomial.");
+        try{int degree = scnr.nextInt();}
+        catch{System.out.println("You messed up, restart and try again please.");}
+        int[][] storage = new int[3][degree+1]
+        
+        System.out.println("Please enter the first coefficent.")
+        storage[0][0] = scnr.nextInt();
+        
+        if (degree >= 2){}
+        for (int i = 2; i <= degree; ++i){
+            System.out.println("Please enter the next coefficent.")
+            int storage[0][i-1] = scnr.nextInt();
+        }
+        
+        System.out.println("What is the a in x + a, where x + a is your divisor.")
+        int divisor = -1 * scnr.nextInt();
+        
+        storage[2][0] = storage[0][0];
+        if (degree >= 2){
+            for(int a = 2; a <= degree; ++a){
+                storage[1][a-1] = (storage[2][a-2] * divisor);
+                storage[2][a-1] = (storage[0][a-1] + storage[1][a-1]);
+                }
+        }
+        
+        System.out.println("The solution is printed out in the opposite of standard form (mirror image with terms the same)");
+        
+        for (int b = 0){
+            
+            System.out.print(storage[2][b] + "x^" + b + " + ")
+        }
+            System.out.println("\nPlease restart the program if you wish to do synthetic divison again. Be sure to record the answer before you close. Goodbye!")
+            
+        }
+        
+    }
+    
+    
+    
+    
